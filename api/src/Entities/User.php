@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: leo
- * Date: 3/4/19
- * Time: 11:59 AM
- */
 
-namespace ESportsBracketBuilder;
-
+namespace ESportsBracketBuilder\Entities;
 /**
  * @Entity @Table(name="users")
  **/

@@ -1,7 +1,6 @@
 <?php
 
-namespace ESportsBracketBuilder;
-
+namespace ESportsBracketBuilder\Entities;
 /**
  * @Entity @Table(name="games")
  */
