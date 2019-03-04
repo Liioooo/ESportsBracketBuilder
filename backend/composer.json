@@ -1,0 +1,12 @@
+{
+    "name": "leo/e-sports-bracket-builder",
+    "authors": [
+        {
+            "name": "Leo Preissegger",
+            "email": "preissegger.leo@a1.net"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "^2.6"
+    }
+}
