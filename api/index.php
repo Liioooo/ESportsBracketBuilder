@@ -1,15 +1,5 @@
 <?php
 
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
-
-require_once "vendor/autoload.php";
-
-require_once 'db_connection_params.php';
-
-$isDevMode = true;
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $isDevMode);
-
-$entityManager = EntityManager::create($connectionParams, $config);
+require_once 'orm_bootstrap.php';
 
 new \ESportsBracketBuilder\Api\Api($entityManager);
