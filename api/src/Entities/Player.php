@@ -5,7 +5,7 @@ namespace ESportsBracketBuilder\Entities;
 /**
  * @Entity @Table(name="players")
  **/
-class Player
+class Player implements \JsonSerializable
 {
     /**
      * @var int
@@ -19,6 +19,10 @@ class Player
      */
     protected $name;
 
+    /**
+     * @ManyToOne(targetEntity="Bracket", inversedBy="assignedPlayer")
+     **/
+    protected $bracket;
 
     public function getId()
     {
@@ -35,4 +39,22 @@ class Player
         $this->name = $name;
     }
 
+    public function setBracket(Bracket $bracket)
+    {
+        $bracket->assignedPlayer($this);
+        $this->bracket = $bracket;
+    }
+
+    public function getBracket(): Bracket
+    {
+        return $this->bracket;
+    }
+
+    public function jsonSerialize(): array
+    {
+       return array(
+           'id' => $this->id,
+           'name' => $this->name
+       );
+    }
 }

@@ -3,9 +3,11 @@
 namespace ESportsBracketBuilder\Api\ApiActions;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use ESportsBracketBuilder\Api\ApiActions\ActionDescribers\ApiAction;
 use ESportsBracketBuilder\Api\ApiActions\ActionDescribers\ApiActionInterface;
 use ESportsBracketBuilder\Entities\Bracket;
+use ESportsBracketBuilder\Entities\Game;
 use ESportsBracketBuilder\Entities\Player;
 
 class CreateBracket extends ApiAction implements ApiActionInterface
@@ -25,21 +27,24 @@ class CreateBracket extends ApiAction implements ApiActionInterface
             return $resp;
         }
 
-        $bracket = new Bracket();
-        $bracket->setName($params->bracketName);
         $user = $this->entityManager->find('ESportsBracketBuilder\Entities\User', $userID);
 
-        $userBrackets = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Bracket')
-            ->findBy(array('user' => $userID));
+        $userHasBracketWithName = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Bracket')
+            ->findBy(array(
+                'user' => $userID,
+                'name' => $params->bracketName
+            ));
 
-        foreach ($userBrackets as $userBracket) {
-            if($userBracket->getName() == $params->bracketName) {
-                $resp->error = 'hasBracketWithName';
-                return $resp;
-            }
+        if($userHasBracketWithName != null) {
+            $resp->error = 'hasBracketWithName';
+            return $resp;
         }
 
+        $bracket = new Bracket();
+        $bracket->setName($params->bracketName);
         $bracket->setUser($user);
+
+        // Add Players to Bracket
         foreach ($params->players as $player) {
             if(!isset($player->name)) {
                 $this->entityManager->clear();
@@ -48,12 +53,26 @@ class CreateBracket extends ApiAction implements ApiActionInterface
             }
             $playerObj = new Player();
             $playerObj->setName($player->name);
-            $this->entityManager->persist($playerObj);
+            $playerObj->setBracket($bracket);
         }
+
+        //Add Games to Bracket / randomize Games
+        $randomizedPlayers = $bracket->getPlayers()->toArray();
+        shuffle($randomizedPlayers);
+        $randomizedPlayers = new ArrayCollection($randomizedPlayers);
+        for ($i = 0; $i < $randomizedPlayers->count(); $i += 2) {
+            $game = new Game();
+            $game->setPositionInRound($i / 2);
+            $game->setPlayer1($randomizedPlayers[$i]);
+            $game->setPlayer2($randomizedPlayers[$i + 1]);
+            $game->setRoundInBracket(0);
+            $game->setBracket($bracket);
+        }
+
         $this->entityManager->persist($bracket);
         $this->entityManager->flush();
 
-        $resp->bracketName = $bracket->getName();
+        $resp = $bracket;
         return $resp;
     }
 

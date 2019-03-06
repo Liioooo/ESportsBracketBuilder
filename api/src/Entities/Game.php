@@ -4,7 +4,7 @@ namespace ESportsBracketBuilder\Entities;
 /**
  * @Entity @Table(name="games")
  */
-class Game
+class Game implements \JsonSerializable
 {
 
     /**
@@ -14,28 +14,26 @@ class Game
     protected $id;
 
     /**
-     * @var int
-     * @OneToOne(targetEntity="Player")
+     * @ManyToOne(targetEntity="Player")
      * @JoinColumn(name="player1_id", referencedColumnName="id")
      */
     protected $player1;
 
     /**
-     * @var int
-     * @OneToOne(targetEntity="Player")
+     * @ManyToOne(targetEntity="Player")
      * @JoinColumn(name="player2_id", referencedColumnName="id")
      */
     protected $player2;
 
     /**
      * @var int
-     * @Column(type="integer")
+     * @Column(type="integer", nullable=true)
      */
     protected $player1Points;
 
     /**
      * @var int
-     * @Column(type="integer")
+     * @Column(type="integer", nullable=true)
      */
     protected $player2Points;
 
@@ -49,6 +47,12 @@ class Game
      * @Column(type="integer")
      */
     protected $roundInBracket;
+
+    /**
+     * @var int
+     * @Column(type="integer")
+     */
+    protected $positionInRound;
 
     public function getId(): int
     {
@@ -116,4 +120,36 @@ class Game
         $this->roundInBracket = $roundInBracket;
     }
 
+    public function getWinner(): Player {
+        if($this->player1Points == null || $this->player2Points == null) {
+            return null;
+        }
+        if($this->player1Points == $this->player2Points) {
+            return rand(0,1) < 0.5 ? $this->player1 : $this->player2;
+        }
+        return $this->player1Points < $this->player2Points ? $this->player2 : $this->player1;
+    }
+
+    public function getPositionInRound(): int
+    {
+        return $this->positionInRound;
+    }
+
+    public function setPositionInRound(int $positionInRound): void
+    {
+        $this->positionInRound = $positionInRound;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return array(
+            'id' => $this->id,
+            'player1' => $this->player1,
+            'player2' => $this->player2,
+            'player1Points' => $this->player1Points,
+            'player2Points' => $this->player2Points,
+            'roundInBracket' => $this->roundInBracket,
+            'positionInRound' => $this->positionInRound
+        );
+    }
 }

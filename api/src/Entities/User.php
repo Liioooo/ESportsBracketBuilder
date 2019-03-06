@@ -1,6 +1,8 @@
 <?php
 
 namespace ESportsBracketBuilder\Entities;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity
  * @Table(name="users")
@@ -27,9 +29,13 @@ class User
 
     /**
      * @OneToMany(targetEntity="Bracket", mappedBy="user")
-     * @var Bracket[]
      **/
-    protected $brackets = null;
+    protected $brackets;
+
+    public function __construct()
+    {
+        $this->brackets = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -65,7 +71,7 @@ class User
         $this->brackets[] = $bracket;
     }
 
-    public function getBrackets(): array
+    public function getBrackets(): ArrayCollection
     {
         return $this->brackets;
     }
