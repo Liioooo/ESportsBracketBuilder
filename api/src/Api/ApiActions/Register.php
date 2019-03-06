@@ -4,10 +4,10 @@ namespace ESportsBracketBuilder\Api\ApiActions;
 
 use ESportsBracketBuilder\Api\ApiActions\ActionDescribers\ApiAction;
 use ESportsBracketBuilder\Api\ApiActions\ActionDescribers\ApiActionInterface;
-use ESportsBracketBuilder\Entities\User;
 use ESportsBracketBuilder\Api\Jwt\JWTManagement;
+use ESportsBracketBuilder\Entities\User;
 
-class Login extends ApiAction implements ApiActionInterface
+class Register extends ApiAction implements ApiActionInterface
 {
 
     public function runAction($params, ?string $userID): object
@@ -19,19 +19,19 @@ class Login extends ApiAction implements ApiActionInterface
             return $resp;
         }
 
-        $user = $this->entityManager
+        if ($this->entityManager
             ->getRepository('ESportsBracketBuilder\Entities\User')
-            ->findOneBy(array('email' => $params->email));
-
-        if($user == null) {
-            $resp->loginError = 'doesNotExist';
+            ->findOneBy(array('email' => $params->email)) != null
+        ) {
+            $resp->loginError = 'User already exists';
             return $resp;
         }
 
-        if(!$user->checkPassword($params->password)) {
-            $resp->loginError = 'invalidPW';
-            return $resp;
-        }
+        $user = new User();
+        $user->setPassword($params->password);
+        $user->setEmail($params->email);
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
 
         $resp->token = JWTManagement::generateToken($user->getId());
         return $resp;

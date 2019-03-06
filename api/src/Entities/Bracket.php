@@ -20,6 +20,7 @@ class Bracket
     protected $games = null;
 
     /**
+     * @var int
      * @ManyToOne(targetEntity="User", inversedBy="assignedBracket")
      **/
     protected $user;

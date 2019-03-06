@@ -1,3 +1,3 @@
 /.idea
 /vendor
-/db_connection_params.php
+/environment.php

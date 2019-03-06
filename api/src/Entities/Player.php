@@ -19,11 +19,6 @@ class Player
      */
     protected $name;
 
-    /**
-     * @var string
-     * @Column(type="string")
-     */
-    protected $email;
 
     public function getId()
     {
@@ -40,13 +35,4 @@ class Player
         $this->name = $name;
     }
 
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email)
-    {
-        $this->email = $email;
-    }
 }

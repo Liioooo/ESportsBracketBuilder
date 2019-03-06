@@ -3,6 +3,8 @@
 namespace ESportsBracketBuilder\Api;
 
 use Doctrine\ORM\EntityManager;
+use ESportsBracketBuilder\Api\Jwt\JwtException;
+use ESportsBracketBuilder\Api\Jwt\JWTManagement;
 
 class Api
 {
@@ -44,13 +46,12 @@ class Api
             $userId = null;
             if($action->requiresAuthentication()) {
                 $userId = JWTManagement::verifyToken();
-                if($userId == null) {
-                    $this->throwError(ResponseCodes::$FORBIDDEN, 'Invalid Token');
-                }
             }
             $this->returnResponse($action->runAction($requestData->params, $userId));
         } catch (\ReflectionException $exception) {
             $this->throwError(ResponseCodes::$NOT_FOUND, 'Api not found');
+        } catch (JwtException $exception) {
+            $this->throwError(ResponseCodes::$FORBIDDEN, $exception->getMessage());
         }
     }
 

@@ -2,7 +2,8 @@
 
 namespace ESportsBracketBuilder\Entities;
 /**
- * @Entity @Table(name="users")
+ * @Entity
+ * @Table(name="users")
  **/
 class User
 {
@@ -14,13 +15,13 @@ class User
 
     /**
      * @var string
-     * @Column(type="string")
+     * @Column(type="string", nullable=false)
      */
     protected $password;
 
     /**
      * @var string
-     * @Column(type="string")
+     * @Column(type="string", unique=true, nullable=false)
      */
     protected $email;
 
@@ -42,7 +43,11 @@ class User
 
     public function setPassword(string $password): void
     {
-        $this->password = $password;
+        $this->password = hash('sha256', $password);
+    }
+
+    public function checkPassword(string $password): bool {
+        return $this->password == hash('sha256', $password);
     }
 
     public function getEmail(): string

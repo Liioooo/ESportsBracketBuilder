@@ -6,6 +6,11 @@
             "email": "preissegger.leo@a1.net"
         }
     ],
+    "scripts": {
+        "updateDb": [
+            "vendor/bin/doctrine orm:schema-tool:update --force"
+        ]
+    },
     "require": {
         "doctrine/orm": "^2.6",
         "ext-json": "*",

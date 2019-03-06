@@ -4,7 +4,7 @@ use Doctrine\ORM\EntityManager;
 use \Doctrine\ORM\Configuration;
 
 require_once "vendor/autoload.php";
-require_once 'db_connection_params.php';
+require_once 'environment.php';
 
 $isDevMode = true;
 
@@ -29,4 +29,4 @@ if ($isDevMode) {
     $config->setAutoGenerateProxyClasses(false);
 }
 
-$entityManager = EntityManager::create($connectionParams, $config);
+$entityManager = EntityManager::create($dBConnectionParams, $config);

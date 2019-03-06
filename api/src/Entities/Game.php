@@ -14,27 +14,27 @@ class Game
     protected $id;
 
     /**
-     * One Product has One Shipment.
+     * @var int
      * @OneToOne(targetEntity="Player")
      * @JoinColumn(name="player1_id", referencedColumnName="id")
      */
     protected $player1;
 
     /**
-     * One Product has One Shipment.
+     * @var int
      * @OneToOne(targetEntity="Player")
      * @JoinColumn(name="player2_id", referencedColumnName="id")
      */
     protected $player2;
 
     /**
-     * @var string
+     * @var int
      * @Column(type="integer")
      */
     protected $player1Points;
 
     /**
-     * @var string
+     * @var int
      * @Column(type="integer")
      */
     protected $player2Points;
@@ -43,6 +43,12 @@ class Game
      * @ManyToOne(targetEntity="Bracket", inversedBy="assignedGame")
      **/
     protected $bracket;
+
+    /**
+     * @var int
+     * @Column(type="integer")
+     */
+    protected $roundInBracket;
 
     public function getId(): int
     {
@@ -98,6 +104,16 @@ class Game
     public function getBracket(): Bracket
     {
         return $this->bracket;
+    }
+
+    public function getRoundInBracket(): int
+    {
+        return $this->roundInBracket;
+    }
+
+    public function setRoundInBracket(int $roundInBracket): void
+    {
+        $this->roundInBracket = $roundInBracket;
     }
 
 }

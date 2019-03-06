@@ -1,8 +1,10 @@
 <?php
-$connectionParams = array(
+$dBConnectionParams = array(
     'dbname' => '--DB NAME--',
     'user' => '--USER--',
     'password' => '--PASSWORD--',
     'host' => 'localhost',
     'driver' => 'pdo_mysql',
 );
+
+putenv('JWT_SECRET_KEY=--KEY--');
