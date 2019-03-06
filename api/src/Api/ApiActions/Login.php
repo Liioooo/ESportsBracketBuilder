@@ -4,7 +4,6 @@ namespace ESportsBracketBuilder\Api\ApiActions;
 
 use ESportsBracketBuilder\Api\ApiActions\ActionDescribers\ApiAction;
 use ESportsBracketBuilder\Api\ApiActions\ActionDescribers\ApiActionInterface;
-use ESportsBracketBuilder\Entities\User;
 use ESportsBracketBuilder\Api\Jwt\JWTManagement;
 
 class Login extends ApiAction implements ApiActionInterface
