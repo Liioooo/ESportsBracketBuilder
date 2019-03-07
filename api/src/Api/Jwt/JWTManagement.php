@@ -35,7 +35,7 @@ class JWTManagement
         return $payload->sub;
     }
 
-    static private function getToken(): string {
+    static private function getToken(): ?string {
         $headers = null;
         if (isset($_SERVER['Authorization'])) {
             $headers = trim($_SERVER["Authorization"]);
