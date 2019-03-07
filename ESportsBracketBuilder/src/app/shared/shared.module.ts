@@ -1,20 +1,21 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {TestService} from './services/test/test.service';
-import { SharedComponent } from './components/shared/shared.component';
+import {AuthService} from './services/auth/auth.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-  declarations: [SharedComponent],
+  declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
-  exports: [SharedComponent]
+  exports: []
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [TestService],
+      providers: [AuthService],
     };
   }
 }

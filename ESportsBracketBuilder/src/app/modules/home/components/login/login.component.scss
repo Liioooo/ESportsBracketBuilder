@@ -1,0 +1,13 @@
+@import "~bootswatch/dist/superhero/variables";
+
+.login-register-link {
+  color: $primary !important;
+  text-decoration: none;
+  background-color: transparent;
+
+  &:hover {
+    text-decoration: underline !important;
+    cursor: pointer;
+    color: lighten($primary, 5) !important;
+  }
+}

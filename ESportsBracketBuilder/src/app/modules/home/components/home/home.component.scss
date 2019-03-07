@@ -1,0 +1,30 @@
+@import "mixins";
+
+h1 {
+  font-size: 70px;
+
+  @include mediaQuery(830px, max) {
+    font-size: 60px;
+  }
+  @include mediaQuery(700px, max) {
+    font-size: 50px;
+    text-align: center;
+  }
+  @include mediaQuery(600px, max) {
+    font-size: 40px;
+  }
+  @include mediaQuery(500px, max) {
+    font-size: 35px;
+  }
+  @include mediaQuery(415px, max) {
+    font-size: 30px;
+  }
+}
+
+main {
+  width: 600px;
+
+  @include mediaQuery(640px, max) {
+    width: calc(100% - 32px);
+  }
+}

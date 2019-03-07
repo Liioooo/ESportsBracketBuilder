@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from './components/home/home.component';
+import {AllBracketsComponent} from './components/all-brackets/all-brackets.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent}
+  {path: '', component: AllBracketsComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomeRoutingModule { }
+export class BracketListRoutingModule { }

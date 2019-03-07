@@ -1,4 +1,5 @@
-<p>
-  home works!
-  <app-shared></app-shared>
-</p>
+<h1 class="ml-3 mt-4">E-Sports Bracket Builder</h1>
+<main [ngSwitch]="loginRegister" class="ml-3 mt-5">
+  <app-login *ngSwitchCase="'login'" (loginRegisterStateChanged)="loginRegister = $event"></app-login>
+  <app-register *ngSwitchCase="'register'" (loginRegisterStateChanged)="loginRegister = $event"></app-register>
+</main>
