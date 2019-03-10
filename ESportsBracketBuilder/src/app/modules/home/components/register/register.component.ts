@@ -1,4 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {PasswordMatch} from '@home/validators/PasswordMatch';
+import {AuthService} from '@shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +13,29 @@ export class RegisterComponent implements OnInit {
     @Output()
     loginRegisterStateChanged = new EventEmitter<'login' | 'register'>();
 
-    constructor() { }
+    public registerForm: FormGroup;
+    public hasSubmitted = false;
+
+    constructor(
+        private formBuilder: FormBuilder,
+        private authService: AuthService
+    ) { }
 
     ngOnInit() {
+        this.registerForm = this.formBuilder.group({
+            'email': ['', [Validators.required, Validators.email], [c => this.authService.isEmailAvailableValidator(c)]],
+            'password': ['', [Validators.required, Validators.minLength(8)]],
+            'passwordRepeat': ['', [Validators.required]]
+        }, {
+            validators: [PasswordMatch.matches]
+        });
+    }
+
+    registerClick() {
+        this.hasSubmitted = true;
+        if (this.registerForm.invalid) {
+            return;
+        }
     }
 
     changeLoginRegisterPage() {

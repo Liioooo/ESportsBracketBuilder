@@ -4,16 +4,24 @@
     <h5 class="mb-0"><a class="login-register-link" (click)="changeLoginRegisterPage()" tabindex="0">Or Register now</a></h5>
   </div>
   <div class="card-body">
-    <form>
+    <form [formGroup]="loginForm" (submit)="loginClick()">
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" class="form-control" type="email" name="email" formControlName="email" placeholder="Type your email" tabindex="1">
+        <input id="email" class="form-control" type="email" name="email" formControlName="email" placeholder="Type your email" tabindex="1" [class.is-invalid]="hasSubmitted && loginForm.controls.email.errors" autocomplete="email">
+        <div *ngIf="hasSubmitted && loginForm.controls.email.errors" class="invalid-feedback d-block">
+          <span *ngIf="loginForm.controls.email.errors.required">Email is required!</span>
+          <span *ngIf="loginForm.controls.email.errors.email">This email is invalid!</span>
+        </div>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" class="form-control" type="password" name="password" formControlName="password" placeholder="Type your password" tabindex="2">
+        <input id="password" class="form-control" type="password" name="password" formControlName="password" placeholder="Type your password" tabindex="2" [class.is-invalid]="hasSubmitted && loginForm.controls.password.errors" autocomplete="password">
+        <div *ngIf="hasSubmitted && loginForm.controls.password.errors" class="invalid-feedback d-block">
+          <span *ngIf="loginForm.controls.password.errors.required">Password is required!</span>
+          <span *ngIf="loginForm.controls.password.errors.minlength">Password is too short!</span>
+        </div>
       </div>
-      <button class="btn btn-primary float-right" tabindex="3">Login</button>
+      <button type="submit" class="btn btn-primary float-right" tabindex="3">Login</button>
     </form>
   </div>
 </article>

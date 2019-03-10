@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 
 import { HomeComponent } from './components/home/home.component';
 import {SharedModule} from '@shared/shared.module';
@@ -7,6 +7,7 @@ import {Routes} from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 export const HOME_ROUTES: Routes = [
     {path: '', component: HomeComponent}
@@ -17,7 +18,9 @@ export const HOME_ROUTES: Routes = [
   imports: [
       CommonModule,
       SharedModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      ReactiveFormsModule,
+      FormsModule
   ]
 })
 export class HomeModule { }

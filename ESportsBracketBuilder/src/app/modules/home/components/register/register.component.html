@@ -4,19 +4,32 @@
     <h5 class="mb-0"><a class="login-register-link" (click)="changeLoginRegisterPage()" tabindex="0">Login</a></h5>
   </div>
   <div class="card-body">
-    <form>
+    <form [formGroup]="registerForm" (submit)="registerClick()">
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" class="form-control" type="email" name="email" formControlName="email" placeholder="Type your email" tabindex="1">
+        <input id="email" class="form-control" type="email" name="email" formControlName="email" placeholder="Type your email" tabindex="1" [class.is-invalid]="hasSubmitted && registerForm.controls.email.errors" autocomplete="email">
+        <div *ngIf="hasSubmitted && registerForm.controls.email.errors" class="invalid-feedback d-block">
+          <span *ngIf="registerForm.controls.email.errors.required">Email is required!</span>
+          <span *ngIf="registerForm.controls.email.errors.email">This email is invalid!</span>
+          <span *ngIf="registerForm.controls.email.errors.isNotAvailable">This email is already in use!</span>
+        </div>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" class="form-control" type="password" name="password" formControlName="password" placeholder="Type your password" tabindex="2">
+        <input id="password" class="form-control" type="password" name="password" formControlName="password" placeholder="Type your password" tabindex="2" [class.is-invalid]="hasSubmitted && registerForm.controls.password.errors" autocomplete="password">
+        <div *ngIf="hasSubmitted && registerForm.controls.password.errors" class="invalid-feedback d-block">
+          <span *ngIf="registerForm.controls.password.errors.required">Password is required!</span>
+          <span *ngIf="registerForm.controls.password.errors.minlength">Password is too short!</span>
+        </div>
       </div>
       <div class="form-group">
-        <input id="passwordRepeat" class="form-control" type="password" name="passwordRepeat" formControlName="passwordRepeat" placeholder="Repeat your password" tabindex="3">
+        <input id="passwordRepeat" class="form-control" type="password" name="passwordRepeat" formControlName="passwordRepeat" placeholder="Repeat your password" tabindex="3" [class.is-invalid]="hasSubmitted && registerForm.controls.passwordRepeat.errors" autocomplete="password">
+        <div *ngIf="hasSubmitted && registerForm.controls.passwordRepeat.errors" class="invalid-feedback d-block">
+          <span *ngIf="registerForm.controls.passwordRepeat.errors.required">You must repeat your Password!</span>
+          <span *ngIf="registerForm.controls.passwordRepeat.errors.matchPassword">Passwords do not match</span>
+        </div>
       </div>
-      <button class="btn btn-primary float-right" tabindex="4">Register</button>
+      <button type="submit" class="btn btn-primary float-right" tabindex="4">Register</button>
     </form>
   </div>
 </article>
