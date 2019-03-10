@@ -11,6 +11,7 @@
         <div *ngIf="hasSubmitted && loginForm.controls.email.errors" class="invalid-feedback d-block">
           <span *ngIf="loginForm.controls.email.errors.required">Email is required!</span>
           <span *ngIf="loginForm.controls.email.errors.email">This email is invalid!</span>
+          <span *ngIf="loginForm.controls.email.errors.doesNotExist">This Account doesn't exist!</span>
         </div>
       </div>
       <div class="form-group">
@@ -19,6 +20,7 @@
         <div *ngIf="hasSubmitted && loginForm.controls.password.errors" class="invalid-feedback d-block">
           <span *ngIf="loginForm.controls.password.errors.required">Password is required!</span>
           <span *ngIf="loginForm.controls.password.errors.minlength">Password is too short!</span>
+          <span *ngIf="loginForm.controls.password.errors.invalidPW">Password is invalid!</span>
         </div>
       </div>
       <button type="submit" class="btn btn-primary float-right" tabindex="3">Login</button>

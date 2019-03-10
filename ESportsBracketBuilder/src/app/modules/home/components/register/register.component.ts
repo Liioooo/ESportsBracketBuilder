@@ -36,6 +36,11 @@ export class RegisterComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         }
+
+        const email = this.registerForm.controls.email.value;
+        const password = this.registerForm.controls.password.value;
+
+        this.authService.register(email, password).subscribe(resp => this.registerForm.controls.email.setErrors({isNotAvailable: true}));
     }
 
     changeLoginRegisterPage() {
