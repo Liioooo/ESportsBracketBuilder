@@ -4,6 +4,7 @@
   color: $primary !important;
   text-decoration: none;
   background-color: transparent;
+  user-select: none;
 
   &:hover {
     text-decoration: underline !important;

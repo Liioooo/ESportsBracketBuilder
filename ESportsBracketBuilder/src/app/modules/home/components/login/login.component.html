@@ -1,19 +1,19 @@
 <article class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
     <h3 class="mb-0">Login</h3>
-    <h5 class="mb-0"><a class="login-register-link" (click)="changeLoginRegisterPage()">Or Register now</a></h5>
+    <h5 class="mb-0"><a class="login-register-link" (click)="changeLoginRegisterPage()" tabindex="0">Or Register now</a></h5>
   </div>
   <div class="card-body">
     <form>
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" class="form-control" type="email" name="email" formControlName="email" placeholder="Type your email">
+        <input id="email" class="form-control" type="email" name="email" formControlName="email" placeholder="Type your email" tabindex="1">
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" class="form-control" type="password" name="password" formControlName="password" placeholder="Type your password">
+        <input id="password" class="form-control" type="password" name="password" formControlName="password" placeholder="Type your password" tabindex="2">
       </div>
-      <button class="btn btn-primary float-right">Login</button>
+      <button class="btn btn-primary float-right" tabindex="3">Login</button>
     </form>
   </div>
 </article>

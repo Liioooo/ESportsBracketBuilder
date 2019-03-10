@@ -6,6 +6,7 @@ import {SharedModule} from '@shared/shared.module';
 import {Routes} from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 export const HOME_ROUTES: Routes = [
     {path: '', component: HomeComponent}
@@ -15,7 +16,8 @@ export const HOME_ROUTES: Routes = [
   declarations: [HomeComponent, LoginComponent, RegisterComponent],
   imports: [
       CommonModule,
-      SharedModule
+      SharedModule,
+      BrowserAnimationsModule
   ]
 })
 export class HomeModule { }
