@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HOME_ROUTES} from '@home/home.module';
+import {AuthGuard} from '@shared/guards/auth/auth.guard';
 
 const routes: Routes = [
     {
@@ -10,11 +11,12 @@ const routes: Routes = [
     },
     {
         path: 'home',
-        children: HOME_ROUTES
+        children: HOME_ROUTES,
     },
     {
         path: 'all-brackets',
-        loadChildren: '@bracketList/bracket-list.module#BracketListModule'
+        loadChildren: '@bracketList/bracket-list.module#BracketListModule',
+        canActivate: [AuthGuard]
     }
 ];
 

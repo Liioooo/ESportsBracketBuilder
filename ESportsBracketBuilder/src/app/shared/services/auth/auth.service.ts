@@ -93,10 +93,15 @@ export class AuthService {
       );
   }
 
+  public logout() {
+      sessionStorage.removeItem('token');
+      this.router.navigate(['/home']);
+  }
+
   private setToken(token: string) {
       sessionStorage.setItem('token', token);
       this.token = token;
-      this.userId = this.decodeJWT(this.getToken()).sub;
+      this.userId = this.decodeJWT(this.getToken())['sub'];
   }
 
   public getToken(): string {
@@ -108,7 +113,7 @@ export class AuthService {
 
   public getUserId(): number {
       if (!this.userId) {
-          this.userId = this.decodeJWT(this.getToken()).sub;
+          this.userId = this.decodeJWT(this.getToken())['sub'];
       }
       return this.userId;
   }
@@ -120,5 +125,9 @@ export class AuthService {
       const jwtData = token.split('.')[1];
       const decodedJwtJsonData = window.atob(jwtData);
       return JSON.parse(decodedJwtJsonData);
+  }
+
+  public isLoggedIn(): boolean {
+      return this.getToken() !== null;
   }
 }

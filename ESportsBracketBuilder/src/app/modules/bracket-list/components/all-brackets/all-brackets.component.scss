@@ -1,0 +1,14 @@
+@import "~bootswatch/dist/superhero/variables";
+
+.logout-link {
+  color: $primary !important;
+  text-decoration: none;
+  background-color: transparent;
+  user-select: none;
+
+  &:hover {
+    text-decoration: underline !important;
+    cursor: pointer;
+    color: lighten($primary, 5) !important;
+  }
+}
