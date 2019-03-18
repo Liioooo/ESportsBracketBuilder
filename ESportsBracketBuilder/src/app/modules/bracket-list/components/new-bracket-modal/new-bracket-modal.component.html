@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">Add new Bracket</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('cancel')">
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close('cancel')" tabindex="1">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -8,28 +8,33 @@
 <form [formGroup]="newBracketForm" (submit)="submitForm()">
   <div class="modal-body">
       <div class="form-group">
-        <label for="name">Name</label>
-        <input id="name" class="form-control" type="text" name="name" formControlName="name" placeholder="Type new of bracket" tabindex="1">
+          <label for="name">Name</label>
+          <input id="name" class="form-control" type="text" name="name" formControlName="name" placeholder="Name of new bracket" tabindex="2" [class.is-invalid]="hasSubmitted && newBracketForm.controls.name.errors">
+          <div *ngIf="hasSubmitted && newBracketForm.controls.name.errors" class="invalid-feedback d-block">
+              <span *ngIf="newBracketForm.controls.name.errors.required">Name is required!</span>
+              <span *ngIf="newBracketForm.controls.name.errors.hasBracketWithName">You already have a bracket with this name!</span>
+          </div>
       </div>
       <div class="form-group">
-        <label for="playerAmount">Player Amount</label>
-        <select formControlName="playerAmount" class="form-control" id="playerAmount" tabindex="2">
-          <option value="2">2</option>
-          <option value="4">4</option>
-          <option value="8">8</option>
-          <option value="16">16</option>
-        </select>
+          <label for="playerAmount">Player Amount</label>
+          <select formControlName="playerAmount" class="form-control" id="playerAmount" tabindex="2">
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="8">8</option>
+            <option value="16">16</option>
+          </select>
       </div>
       <label>Players</label>
       <div formArrayName="players" *ngFor="let player of newBracketForm.get('players').controls; let i = index;" class="form-group">
-        <div [formGroupName]="i">
-          <input class="form-control" formControlName="playerName" type="text" placeholder="Player {{i + 1}} Name" [tabIndex]="i + 3">
-        </div>
+          <input class="form-control" [formControlName]="i" type="text" placeholder="Player {{i + 1}} Name" [tabIndex]="i + 3" [class.is-invalid]="hasSubmitted && player.errors">
+          <div *ngIf="hasSubmitted && player.errors" class="invalid-feedback d-block">
+              <span *ngIf="player.errors.required">Name is required!</span>
+          </div>
       </div>
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="activeModal.dismiss('cancel')">Cancel</button>
-    <button type="submit" class="btn btn-success">Add</button>
+    <button type="button" class="btn btn-danger" (click)="activeModal.close('cancel')" tabindex="29">Cancel</button>
+    <button type="submit" class="btn btn-success" tabindex="30">Add</button>
   </div>
 </form>
