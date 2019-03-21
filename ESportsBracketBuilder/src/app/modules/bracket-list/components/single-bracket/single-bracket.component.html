@@ -1,0 +1,11 @@
+<div class="w-100 bg-primary align-items-center" [ngSwitch]="editing">
+  <h5 *ngSwitchCase="false" class="mb-0 pl-2">{{bracket.name}}</h5>
+  <input *ngSwitchCase="true" class="form-control" type="text" [(ngModel)]="bracket.name">
+  <button class="btn btn-info" (click)="editOrSaveName()">
+    <img *ngSwitchCase="false" src="assets/pencil-edit-button.svg">
+    <img *ngSwitchCase="true" src="assets/checked.svg">
+  </button>
+  <button class="btn btn-info" (click)="deleteBracket()">
+    <img src="assets/rubbish-bin.svg">
+  </button>
+</div>

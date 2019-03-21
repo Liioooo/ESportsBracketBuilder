@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
-import {map, switchMap, tap} from 'rxjs/operators';
-import {Bracket} from '@shared/models/Bracket';
+import {filter, map, switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +39,31 @@ export class BracketsService {
           );
         })
     );
+  }
+
+  public updateBracketName(bracketId: number, newName: string): Observable<any> {
+      return this.http.post('/api/', {
+          apiAction: 'changeBracketName',
+          params: {
+              bracketId,
+              newName
+          }
+      }).pipe(
+          map(resp => resp['response']),
+          filter(resp => !resp['error'])
+      );
+  }
+
+  public deleteBracket(bracketId: number): Observable<any> {
+      return this.http.post('/api/', {
+          apiAction: 'deleteBracket',
+          params: {
+              bracketId,
+          }
+      }).pipe(
+          map(resp => resp['response']),
+          filter(resp => !resp['error'])
+      );
   }
 
   public updateBracketList() {

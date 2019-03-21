@@ -1,0 +1,27 @@
+@import "~bootswatch/dist/superhero/variables";
+
+div {
+  margin-bottom: .8rem;
+
+  display: grid;
+  grid-template-columns: auto 50px 50px;
+
+  input {
+    height: 100%;
+    background-color: $blue;
+    color: white;
+    font-size: 19px;
+  }
+
+  button {
+    height: 100%;
+
+    img {
+      width: 33px;
+      height: 33px;
+      position: relative;
+      top: -3px;
+      left: -3px;
+    }
+  }
+}

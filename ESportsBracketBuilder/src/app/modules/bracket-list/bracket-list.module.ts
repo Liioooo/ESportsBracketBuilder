@@ -6,9 +6,11 @@ import {SharedModule} from '@shared/shared.module';
 import { NewBracketModalComponent } from './components/new-bracket-modal/new-bracket-modal.component';
 import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SingleBracketComponent } from './components/single-bracket/single-bracket.component';
+import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
 
 @NgModule({
-  declarations: [AllBracketsComponent, NewBracketModalComponent],
+  declarations: [AllBracketsComponent, NewBracketModalComponent, SingleBracketComponent, ConfirmDeleteModalComponent],
   imports: [
     CommonModule,
     BracketListRoutingModule,
@@ -18,7 +20,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule
   ],
   entryComponents: [
-      NewBracketModalComponent
+      NewBracketModalComponent,
+      ConfirmDeleteModalComponent
   ]
 })
 export class BracketListModule { }

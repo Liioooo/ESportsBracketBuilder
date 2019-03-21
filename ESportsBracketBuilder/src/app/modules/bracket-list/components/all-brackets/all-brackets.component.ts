@@ -30,10 +30,16 @@ export class AllBracketsComponent implements OnInit, AfterViewInit {
   }
 
   async newBracketClick() {
-    const result = await this.modalService.open(NewBracketModalComponent, { size: 'lg' }).result;
-    if (result === 'added') {
-      this.bracketService.updateBracketList();
-    }
+    try {
+        const result = await this.modalService.open(NewBracketModalComponent, { size: 'lg' }).result;
+        if (result === 'added') {
+            this.bracketService.updateBracketList();
+        }
+    } catch (e) {}
+  }
+
+  bracketTrackBy(index, item: any) {
+    return item.id;
   }
 
 }

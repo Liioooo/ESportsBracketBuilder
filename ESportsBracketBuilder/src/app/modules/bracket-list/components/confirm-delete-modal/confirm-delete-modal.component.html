@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">Bracket deletion</h4>
+  <button type="button" class="close" aria-describedby="modal-title" (click)="activeModal.close('close')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p><strong>Are you sure you want to delete your bracket <span class="text-primary">"{{bracketName}}"</span></strong></p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close('cancel')">Cancel</button>
+  <button type="button" class="btn btn-danger" (click)="activeModal.close('delete')">Ok</button>
+</div>

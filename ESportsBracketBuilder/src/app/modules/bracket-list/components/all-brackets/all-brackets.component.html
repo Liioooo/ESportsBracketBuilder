@@ -3,8 +3,8 @@
     <h3 class="mb-0">Your Brackets</h3>
     <h5 class="mb-0"><a class="logout-link" tabindex="0" (click)="logoutClick()">Logout</a></h5>
   </div>
-  <div *ngFor="let bracket of (allBrackets$ | async)">
-      <p>{{bracket.name}}</p>
+  <div class="ml-4 bracket-list">
+      <app-single-bracket *ngFor="let bracket of (allBrackets$ | async); trackBy: bracketTrackBy" [bracket]="bracket"></app-single-bracket>
+    <button class="btn btn-info w-100" (click)="newBracketClick()">Add new Bracket</button>
   </div>
-  <button class="w-25 btn btn-info" (click)="newBracketClick()">Add new Bracket</button>
 </main>

@@ -1,4 +1,5 @@
 @import "~bootswatch/dist/superhero/variables";
+@import "mixins";
 
 .logout-link {
   color: $primary !important;
@@ -10,5 +11,22 @@
     text-decoration: underline !important;
     cursor: pointer;
     color: lighten($primary, 5) !important;
+  }
+}
+
+.bracket-list {
+  width: 25%;
+
+  @include mediaQuery(1300px, max) {
+    width: 40%;
+  }
+  @include mediaQuery(700px, max) {
+    width: 60%;
+  }
+  @include mediaQuery(550px, max) {
+    width: 80%;
+  }
+  @include mediaQuery(400px, max) {
+    width: 90%;
   }
 }
