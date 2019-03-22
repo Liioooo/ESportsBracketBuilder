@@ -1,5 +1,5 @@
 <div class="w-100 bg-primary align-items-center" [ngSwitch]="editing">
-  <h5 *ngSwitchCase="false" class="mb-0 pl-2">{{bracket.name}}</h5>
+  <button *ngSwitchCase="false" class="btn btn-primary name-button" [routerLink]="['/bracket', bracket.id]">{{bracket.name}}</button>
   <input *ngSwitchCase="true" class="form-control" type="text" [(ngModel)]="bracket.name">
   <button class="btn btn-info" (click)="editOrSaveName()">
     <img *ngSwitchCase="false" src="assets/pencil-edit-button.svg">

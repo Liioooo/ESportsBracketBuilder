@@ -4,6 +4,7 @@ import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {NewBracketModalComponent} from '@bracketList/components/new-bracket-modal/new-bracket-modal.component';
 import {BracketsService} from '@shared/services/brackets/brackets.service';
 import {Observable} from 'rxjs';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-all-brackets',
@@ -14,9 +15,15 @@ export class AllBracketsComponent implements OnInit, AfterViewInit {
 
   public allBrackets$: Observable<{id: number, name: string}[]>;
 
-  constructor(private authService: AuthService, private modalService: NgbModal, private bracketService: BracketsService) { }
+  constructor(
+      private authService: AuthService,
+      private modalService: NgbModal,
+      private bracketService: BracketsService,
+      private titleService: Title
+  ) { }
 
   ngOnInit() {
+    this.titleService.setTitle('All Brackets');
     this.allBrackets$ = this.bracketService.allBrackets();
   }
 

@@ -6,6 +6,7 @@
       "@shared/*": ["app/shared/*"],
       "@home/*": ["app/modules/home/*"],
       "@bracketList/*": ["app/modules/bracket-list/*"],
+      "@bracket/*": ["app/modules/bracket/*"],
       "@main/*" : ["*"]
     },
     "outDir": "./dist/out-tsc",

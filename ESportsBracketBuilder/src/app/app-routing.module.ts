@@ -17,6 +17,11 @@ const routes: Routes = [
         path: 'all-brackets',
         loadChildren: '@bracketList/bracket-list.module#BracketListModule',
         canActivate: [AuthGuard]
+    },
+    {
+        path: 'bracket',
+        loadChildren: '@bracket/bracket.module#BracketModule',
+        canActivate: [AuthGuard]
     }
 ];
 
