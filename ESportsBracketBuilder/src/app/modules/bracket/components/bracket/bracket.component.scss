@@ -26,6 +26,7 @@
   height: calc(100% - 33px - 1rem);
   display: grid;
   grid-template-rows: repeat(16, 1fr);
-  grid-template-columns: repeat(16, 1fr);
-  grid-gap: 10px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-row-gap: 10px;
+  grid-column-gap: 20px;
 }

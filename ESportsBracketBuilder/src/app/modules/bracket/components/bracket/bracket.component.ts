@@ -33,4 +33,8 @@ export class BracketComponent implements OnInit {
     this.authService.logout();
   }
 
+  calculateGridXPos(roundInBracket: number, positionInRound: number): number {
+    return (roundInBracket === 0 ? 1 : (2 ** roundInBracket)) * (positionInRound * 2 + 1);
+  }
+
 }
