@@ -10,9 +10,8 @@
     <div *ngFor="let game of bracket.games" [ngStyle]="{
        'grid-row': calculateGridXPos(game.roundInBracket, game.positionInRound) + '/ span 2',
        'grid-column': (game.roundInBracket * 3 + 1) + '/ span 3'
-     }" class="bg-info">
-      <div>{{game.player1?.name}}</div>
-      <div>{{game.player2?.name}}</div>
+     }">
+        <app-game [game]="game"></app-game>
     </div>
   </div>
 </main>
