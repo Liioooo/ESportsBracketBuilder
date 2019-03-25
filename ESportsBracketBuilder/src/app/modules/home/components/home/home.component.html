@@ -1,4 +1,4 @@
-<h1 class="ml-3 mt-4">E-Sports Bracket Builder</h1>
+<h1 class="p-2 pt-3">E-Sports Bracket Builder</h1>
 <main #loginBox [ngSwitch]="loginRegister" [@loginRegister]="loginRegisterAnimationState" class="ml-3 mt-5">
   <app-login *ngSwitchCase="'login'" (loginRegisterStateChanged)="loginRegisterStateChanged($event)"></app-login>
   <app-register *ngSwitchCase="'register'" (loginRegisterStateChanged)="loginRegisterStateChanged($event)"></app-register>

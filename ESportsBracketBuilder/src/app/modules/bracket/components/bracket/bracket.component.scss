@@ -1,0 +1,31 @@
+@import "~bootswatch/dist/superhero/variables";
+
+.header {
+  height: 33px;
+
+  .right-side-nav {
+    width: 175px;
+    justify-content: space-between;
+
+    .top-nav-link {
+      color: $primary !important;
+      text-decoration: none;
+      background-color: transparent;
+      user-select: none;
+
+      &:hover {
+        text-decoration: underline !important;
+        cursor: pointer;
+        color: lighten($primary, 5) !important;
+      }
+    }
+  }
+}
+
+.main-view {
+  height: calc(100% - 33px - 1rem);
+  display: grid;
+  grid-template-rows: repeat(16, 1fr);
+  grid-template-columns: repeat(16, 1fr);
+  grid-gap: 10px;
+}

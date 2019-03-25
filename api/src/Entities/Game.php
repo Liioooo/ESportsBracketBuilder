@@ -79,7 +79,7 @@ class Game implements \JsonSerializable
         $this->player2 = $player2;
     }
 
-    public function getPlayer1Points(): int
+    public function getPlayer1Points()
     {
         return $this->player1Points;
     }
@@ -89,7 +89,7 @@ class Game implements \JsonSerializable
         $this->player1Points = $player1Points;
     }
 
-    public function getPlayer2Points(): int
+    public function getPlayer2Points()
     {
         return $this->player2Points;
     }

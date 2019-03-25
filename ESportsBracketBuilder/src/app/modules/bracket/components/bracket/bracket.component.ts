@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Bracket} from '@shared/models/Bracket';
 import {switchMap} from 'rxjs/operators';
 import {BracketService} from '@shared/services/bracket/bracket.service';
+import {AuthService} from '@shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-bracket',
@@ -14,7 +15,11 @@ export class BracketComponent implements OnInit {
 
   public bracket$: Observable<Bracket>;
 
-  constructor(private route: ActivatedRoute, private bracketService: BracketService) { }
+  constructor(
+      private route: ActivatedRoute,
+      private bracketService: BracketService,
+      private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.bracket$ = this.route.params.pipe(
@@ -22,8 +27,10 @@ export class BracketComponent implements OnInit {
         return this.bracketService.getBracket(params['id']);
       })
     );
+  }
 
-    this.bracket$.subscribe(console.log);
+  logoutClick() {
+    this.authService.logout();
   }
 
 }

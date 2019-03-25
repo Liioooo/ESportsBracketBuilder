@@ -20,8 +20,8 @@ $config->setMetadataCacheImpl($cache);
 $driverImpl = $config->newDefaultAnnotationDriver(__DIR__ . '/src//Entities');
 $config->setMetadataDriverImpl($driverImpl);
 $config->setQueryCacheImpl($cache);
-$config->setProxyDir('/src/Proxies');
-$config->setProxyNamespace('ESportsBracketBuilder\Proxies');
+ $config->setProxyDir('/src/Proxies');
+ $config->setProxyNamespace('ESportsBracketBuilder\Proxies');
 
 if ($isDevMode) {
     $config->setAutoGenerateProxyClasses(true);
