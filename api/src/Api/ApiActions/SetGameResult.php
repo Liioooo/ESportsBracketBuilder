@@ -55,16 +55,29 @@ class SetGameResult extends ApiAction implements ApiActionInterface
                 'positionInRound' => intdiv($game->getPositionInRound(), 2)
             ));
 
-        if($nextGame == null) {
-            $nextGame = new Game();
-            $nextGame->setRoundInBracket($game->getRoundInBracket() + 1);
-            $nextGame->setPositionInRound(intdiv($game->getPositionInRound(), 2));
-            $nextGame->setPlayer1($game->getWinner());
-            $nextGame->setBracket($bracket);
-            $this->entityManager->persist($nextGame);
-        } else {
-            $nextGame->setPlayer2($game->getWinner());
+        $countOfGames = $this->entityManager->getRepository('ESportsBracketBuilder\Entities\Game')->count(
+            array(
+                'bracket' => $params->bracketId,
+            ));
+
+        $isLastGame = ($countOfGames == 1 && $game->getRoundInBracket() == 0) ||
+                      ($countOfGames == 3 && $game->getRoundInBracket() == 1) ||
+                      ($countOfGames == 7 && $game->getRoundInBracket() == 2) ||
+                      ($countOfGames == 15 && $game->getRoundInBracket() == 3);
+
+        if(!$isLastGame) {
+            if($nextGame == null) {
+                $nextGame = new Game();
+                $nextGame->setRoundInBracket($game->getRoundInBracket() + 1);
+                $nextGame->setPositionInRound(intdiv($game->getPositionInRound(), 2));
+                $nextGame->setPlayer1($game->getWinner());
+                $nextGame->setBracket($bracket);
+                $this->entityManager->persist($nextGame);
+            } else {
+                $nextGame->setPlayer2($game->getWinner());
+            }
         }
+
         $this->entityManager->flush();
         return $bracket;
     }
