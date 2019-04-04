@@ -5,6 +5,10 @@
 
   height: 32px;
 
+  .white-text {
+    color: white;
+  }
+
   :last-child {
     line-height: 32px;
   }
@@ -13,5 +17,12 @@
   input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  input {
+    &:focus {
+      //border: none !important;
+      box-shadow: none !important;
+    }
   }
 }

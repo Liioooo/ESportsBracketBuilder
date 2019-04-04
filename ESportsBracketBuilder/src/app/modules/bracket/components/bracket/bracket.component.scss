@@ -1,4 +1,4 @@
-@import "~bootswatch/dist/superhero/variables";
+@import "theming";
 
 .header {
   height: 33px;
@@ -8,7 +8,7 @@
     justify-content: space-between;
 
     .top-nav-link {
-      color: $primary !important;
+      @include getVar(color, primary);
       text-decoration: none;
       background-color: transparent;
       user-select: none;
@@ -16,7 +16,6 @@
       &:hover {
         text-decoration: underline !important;
         cursor: pointer;
-        color: lighten($primary, 5) !important;
       }
     }
   }
