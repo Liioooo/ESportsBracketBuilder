@@ -11,8 +11,8 @@ import {BracketsService} from '@shared/services/brackets/brackets.service';
 })
 export class NewBracketModalComponent implements OnInit, OnDestroy {
 
-  private hasSubmitted = false;
-  private newBracketForm: FormGroup;
+  public hasSubmitted = false;
+  public newBracketForm: FormGroup;
 
   private playerAmountSubscription: Subscription;
 

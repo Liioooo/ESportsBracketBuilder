@@ -17,7 +17,7 @@ import {ErrorHandlerInterceptor} from '@shared/interceptors/error-handler/error-
       BrowserModule,
       SharedModule.forRoot(),
       AppRoutingModule,
-      HomeModule
+      HomeModule,
   ],
   providers: [
       {

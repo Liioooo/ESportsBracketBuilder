@@ -22,7 +22,7 @@ export class ThemingService {
     }
   }
 
-  public get themeToSwichtTo(): string {
+  public get themeToSwitchTo(): string {
     if (this.currentTheme === 'dark') {
       return 'Light';
     } else {
