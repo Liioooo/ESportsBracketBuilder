@@ -2,6 +2,7 @@
   <div class="d-flex justify-content-between align-items-center m-2 header">
     <h3 class="mb-0">{{bracket.name}}</h3>
     <div class="d-flex right-side-nav">
+      <h5 class="top-nav-link" (click)="themeService.switchTheme()">Switch to {{themeService.themeToSwichtTo}} mode</h5>
       <h5 class="top-nav-link" routerLink="/all-brackets">Back to List</h5>
       <h5 class="mb-0"><a class="top-nav-link" tabindex="0" (click)="logoutClick()">Logout</a></h5>
     </div>

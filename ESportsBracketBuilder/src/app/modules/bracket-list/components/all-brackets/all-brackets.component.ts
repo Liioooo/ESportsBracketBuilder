@@ -5,6 +5,7 @@ import {NewBracketModalComponent} from '@bracketList/components/new-bracket-moda
 import {BracketsService} from '@shared/services/brackets/brackets.service';
 import {Observable} from 'rxjs';
 import {Title} from '@angular/platform-browser';
+import {ThemingService} from '@shared/services/theming/theming.service';
 
 @Component({
   selector: 'app-all-brackets',
@@ -19,7 +20,8 @@ export class AllBracketsComponent implements OnInit, AfterViewInit {
       private authService: AuthService,
       private modalService: NgbModal,
       private bracketService: BracketsService,
-      private titleService: Title
+      private titleService: Title,
+      public themeService: ThemingService
   ) { }
 
   ngOnInit() {

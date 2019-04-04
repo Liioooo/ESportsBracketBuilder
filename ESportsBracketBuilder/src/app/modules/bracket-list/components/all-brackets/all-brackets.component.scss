@@ -6,10 +6,13 @@
   text-decoration: none;
   background-color: transparent;
   user-select: none;
+  width: 260px;
 
-  &:hover {
-    text-decoration: underline !important;
-    cursor: pointer;
+  h5 {
+    &:hover {
+      text-decoration: underline !important;
+      cursor: pointer;
+    }
   }
 }
 
