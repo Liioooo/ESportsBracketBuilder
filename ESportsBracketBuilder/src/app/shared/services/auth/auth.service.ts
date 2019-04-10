@@ -18,7 +18,7 @@ export class AuthService {
       private router: Router
   ) { }
 
-  private isEmailAvailable(email: string): Observable<boolean> {
+  public isEmailAvailable(email: string): Observable<boolean> {
       return this.http.post('/api/', {
           apiAction: 'doesUserExist',
           params: {
@@ -27,30 +27,6 @@ export class AuthService {
       }).pipe(
           map(resp => resp['response']['available'])
       );
-  }
-
-  public isEmailAvailableValidator(c: FormControl): Observable<ValidationErrors | null> {
-      return this.isEmailAvailable(c.value).pipe(
-          map(isAvail => {
-              if (isAvail) {
-                  return null;
-              } else {
-                  return {isNotAvailable: true};
-              }
-          })
-      );
-  }
-
-  public doesUserExistValidator(c: FormControl): Observable<ValidationErrors | null> {
-    return this.isEmailAvailable(c.value).pipe(
-        map(isAvail => {
-            if (isAvail) {
-                return {doesNotExist: true};
-            } else {
-                return null;
-            }
-        })
-    );
   }
 
   public login(email: string, password: string): Observable<any> {
