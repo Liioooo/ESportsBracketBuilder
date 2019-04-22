@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '@shared/services/auth/auth.service';
+import {UserExists} from '@home/validators/UserExists';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +18,13 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private authService: AuthService
+        private authService: AuthService,
+        private userExists: UserExists
     ) { }
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
-           'email': ['', [Validators.required, Validators.email], [c => this.authService.doesUserExistValidator(c)]],
+           'email': ['', [Validators.required, Validators.email], [this.userExists]],
            'password': ['', [Validators.required, Validators.minLength(8)]]
         });
     }

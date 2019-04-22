@@ -25,7 +25,7 @@
           </select>
       </div>
       <label>Players</label>
-      <div formArrayName="players" *ngFor="let player of newBracketForm.get('players').controls; let i = index;" class="form-group">
+      <div formArrayName="players" *ngFor="let player of newBracketForm.get('players')['controls']; let i = index;" class="form-group">
           <input class="form-control" [formControlName]="i" type="text" placeholder="Player {{i + 1}} Name" [tabIndex]="i + 3" [class.is-invalid]="hasSubmitted && player.errors">
           <div *ngIf="hasSubmitted && player.errors" class="invalid-feedback d-block">
               <span *ngIf="player.errors.required">Name is required!</span>

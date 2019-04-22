@@ -1,0 +1,113 @@
+$light-vars: (
+  white:    #fff,
+  gray-100: #f8f9fa,
+  gray-200: #eee,
+  gray-300: #dee2e6,
+  gray-400: #ccc,
+  gray-500: #adb5bd,
+  gray-600: #888,
+  gray-700: #495057,
+  gray-800: #333,
+  gray-900: #222,
+  black:    #000,
+
+  blue:    #008cba,
+  indigo:  #6610f2,
+  purple:  #6f42c1,
+  pink:    #e83e8c,
+  red:     #F04124,
+  orange:  #fd7e14,
+  yellow:  #E99002,
+  green:   #43ac6a,
+  teal:    #20c997,
+  cyan:    #5bc0de,
+
+  primary:       #008cba,
+  secondary:     #eee,
+  success:       #43ac6a,
+  info:          #5bc0de,
+  warning:       #E99002,
+  danger:        #F04124,
+  light:         #eee,
+  dark:          #222
+);
+
+$dark-vars: (
+  white:    #fff,
+  gray-100: #EBEBEB,
+  gray-200: #4E5D6C,
+  gray-300: #dee2e6,
+  gray-400: #ced4da,
+  gray-500: #adb5bd,
+  gray-600: #868e96,
+  gray-700: #495057,
+  gray-800: #343a40,
+  gray-900: #212529,
+  black:    #000,
+
+  blue:    #DF691A,
+  indigo:  #6610f2,
+  purple:  #6f42c1,
+  pink:    #e83e8c,
+  red:     #ff0f07,
+  orange:  #f0ad4e,
+  yellow:  #f0ad4e,
+  green:   #5cb85c,
+  teal:    #20c997,
+  cyan:    #5bc0de,
+
+  primary:       #DF691A,
+  secondary:     #4E5D6C,
+  success:       #5cb85c,
+  info:          #5bc0de,
+  warning:       #f0ad4e,
+  danger:        #ff0f07,
+  light:         lighten(#4E5D6C, 35%),
+  dark:          #4E5D6C,
+);
+
+:root {
+  --support-test: #fff;
+}
+
+.dark-theme {
+  $red: #ff0f07;
+
+  @import "~bootswatch/dist/superhero/variables";
+  @import "~bootstrap/scss/bootstrap";
+  @import "~bootswatch/dist/superhero/bootswatch";
+
+  @supports (color: var(--support-test)) {
+    @each $var, $value in $dark-vars {
+      --#{$var}: #{$value};
+    }
+  }
+}
+
+.light-theme {
+  @import "~bootswatch/dist/yeti/variables";
+  @import "~bootstrap/scss/bootstrap";
+  @import "~bootswatch/dist/superhero/bootswatch";
+
+  @supports (color: var(--support-test)) {
+    @each $var, $value in $light-vars {
+      --#{$var}: #{$value};
+    }
+  }
+}
+
+@mixin getVar($property, $var, $important: false) {
+  @supports not (color: var(--support-test)) {
+    @if ($important == false) {
+      #{$property}: map_get($dark-vars, $var);
+    } @else {
+      #{$property}: map_get($dark-vars, $var) !important;
+    }
+  }
+  @if ($important == false) {
+    #{$property}: var(--#{$var});
+  } @else {
+    #{$property}: var(--#{$var}) !important;
+  }
+  #{$property}: var(--#{$var});
+}

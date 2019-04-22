@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {animate, group, query, style, transition, trigger} from '@angular/animations';
+import {ThemingService} from '@shared/services/theming/theming.service';
 
 @Component({
   selector: 'app-home',
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('loginBox') loginBox: ElementRef<HTMLMainElement>;
 
-  constructor() { }
+  constructor(public themingService: ThemingService) { }
 
   ngOnInit() {
   }

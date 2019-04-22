@@ -5,6 +5,7 @@ import {Bracket} from '@shared/models/Bracket';
 import {switchMap} from 'rxjs/operators';
 import {BracketService} from '@shared/services/bracket/bracket.service';
 import {AuthService} from '@shared/services/auth/auth.service';
+import {ThemingService} from '@shared/services/theming/theming.service';
 
 @Component({
   selector: 'app-bracket',
@@ -18,7 +19,8 @@ export class BracketComponent implements OnInit {
   constructor(
       private route: ActivatedRoute,
       private bracketService: BracketService,
-      private authService: AuthService
+      private authService: AuthService,
+      public themeService: ThemingService
   ) { }
 
   ngOnInit() {

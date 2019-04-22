@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PasswordMatch} from '@home/validators/PasswordMatch';
 import {AuthService} from '@shared/services/auth/auth.service';
+import {EmailAvailable} from '@home/validators/EmailAvailable';
 
 @Component({
   selector: 'app-register',
@@ -18,12 +19,13 @@ export class RegisterComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private authService: AuthService
+        private authService: AuthService,
+        private emailAvailable: EmailAvailable
     ) { }
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
-            'email': ['', [Validators.required, Validators.email], [c => this.authService.isEmailAvailableValidator(c)]],
+            'email': ['', [Validators.required, Validators.email], [this.emailAvailable]],
             'password': ['', [Validators.required, Validators.minLength(8)]],
             'passwordRepeat': ['', [Validators.required]]
         }, {

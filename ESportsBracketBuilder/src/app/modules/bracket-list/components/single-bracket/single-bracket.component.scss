@@ -1,4 +1,4 @@
-@import "~bootswatch/dist/superhero/variables";
+@import "theming";
 
 div {
   margin-bottom: .8rem;
@@ -8,9 +8,14 @@ div {
 
   input {
     height: 100%;
-    background-color: $blue;
+    @include getVar(background-color, blue);
     color: white;
     font-size: 19px;
+
+    &:focus {
+      @include getVar(background-color, blue);
+      color: white;
+    }
   }
 
   .name-button {
